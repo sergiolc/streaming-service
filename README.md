@@ -2,7 +2,7 @@
 
 ## Setup
 
-Run `git clone <project-url>` to clone repository.
+Run `git clone https://github.com/sergiolc/streaming-service` to clone repository.
 
 Run `npm install` to install dependencies.
 
@@ -14,7 +14,7 @@ Run `npm run watch` to start serveron watch mode.
 
 Run `npm start` to start server.
 
-Navigate to `http://localhost:3000/`.
+Navigate to `http://localhost:8080`.
 
 ## Run unit tests
 
