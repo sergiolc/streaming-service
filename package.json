@@ -1,0 +1,19 @@
+{
+  "name": "streaming-service",
+  "version": "1.0.0",
+  "description": "Streaming service",
+  "main": "index.js",
+  "scripts": {
+    "start": "node app.js",
+    "watch": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Sergio Correa",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.3"
+  },
+  "devDependencies": {
+    "nodemon": "^1.17.5"
+  }
+}
