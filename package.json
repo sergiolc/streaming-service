@@ -11,9 +11,11 @@
   "author": "Sergio Correa",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.18.3",
     "express": "^4.16.3"
   },
   "devDependencies": {
+    "async": "^2.6.1",
     "chai": "^4.1.2",
     "chai-http": "^4.0.0",
     "mocha": "^5.2.0",

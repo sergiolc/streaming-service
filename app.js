@@ -1,8 +1,15 @@
 const express = require('express');
+const bodyParser = require('body-parser')
+
+const dataStore = require('./data-store');
 
 const routes = require('./routes/index.route');
 
 const app = express();
+
+app.use(bodyParser.json());
+
+app.set('dataStore', dataStore());
 
 
 app.use('/', routes(app));
