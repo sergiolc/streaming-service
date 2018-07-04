@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
-import { DataStore } from '../../../storage/data-store';
-import { MessageQueue } from '../../../messaging/message-queue';
+import { DataStore } from '../../../lib/storage/data-store';
+import { MessageQueue } from '../../../lib/messaging/message-queue';
 
 
 export class VideosController {
@@ -34,8 +34,11 @@ export class VideosController {
     requestStream(req: Request, res: Response) {
 
         const streamingRequest = {
-            videoId: req.params.videoId,
-            userId: req.query.user // Using query params for simplicity (should retrieve user from access token)
+            status: 'pending',
+            data: {
+                videoId: req.params.videoId,
+                userId: req.query.user // Using query params for simplicity (should retrieve user from access token)
+            }
         };
 
 

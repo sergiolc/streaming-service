@@ -1,7 +1,7 @@
 import { Router } from 'express';
-import { DataStore } from '../../../storage/data-store';
+import { DataStore } from '../../../lib/storage/data-store';
+import { MessageQueue } from '../../../lib/messaging/message-queue';
 import { VideosController } from '../controllers/videos.controller';
-import { MessageQueue } from '../../../messaging/message-queue';
 
 export class VideosRouter {
 

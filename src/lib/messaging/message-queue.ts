@@ -1,9 +1,10 @@
 import { Subject } from 'rxjs';
+import { Message } from '../models/message.model';
 
 export class MessageQueue {
 
-    streamingRequests: Subject<any>;
-    processedStreamingRequests: Subject<any>;
+    streamingRequests: Subject<Message>;
+    processedStreamingRequests: Subject<Message>;
 
     constructor() {
 

@@ -1,9 +1,9 @@
 import { Router } from 'express';
-import { DataStore } from '../../../storage/data-store';
+import { DataStore } from '../../../lib/storage/data-store';
+import { MessageQueue } from '../../../lib/messaging/message-queue';
 import { MainRouter } from './main.router';
 import { UsersRouter } from './users.router';
 import { VideosRouter } from './videos.router';
-import { MessageQueue } from '../../../messaging/message-queue';
 
 
 export class AppRouter {

@@ -1,8 +1,8 @@
 import * as express from 'express';
 import * as bodyParser from 'body-parser';
-import { DataStore } from '../../storage/data-store';
+import { DataStore } from '../../lib/storage/data-store';
+import { MessageQueue } from '../../lib/messaging/message-queue';
 import { AppRouter } from './routers/app.router';
-import { MessageQueue } from '../../messaging/message-queue';
 
 const port = process.env.PORT || 8080;
 
@@ -12,12 +12,18 @@ export class Application {
     dataStore: DataStore;
     messageQueue: MessageQueue;
 
-    constructor() {
+    constructor(options: { dataStore: DataStore, messageQueue: MessageQueue }) {
         this.app = express();
-        this.dataStore = new DataStore();
-        this.messageQueue = new MessageQueue();
+        
+        this.dataStore = options.dataStore;
+        this.messageQueue = options.messageQueue;
 
+        
         this.config();
+
+        this.app.listen(port, () => {
+            console.log('Express server listening on port ' + port);
+        });
     }
 
     private config() {
@@ -26,14 +32,13 @@ export class Application {
         this.app.use('/', new AppRouter({ dataStore: this.dataStore, messageQueue: this.messageQueue }).router);
 
 
-        this.messageQueue.processedStreamingRequests.subscribe(data => {
+        this.messageQueue.processedStreamingRequests.subscribe(message => {
             // publish on socket
-            console.log(data);
+            console.log('processed', message);
         });
     }
 }
 
-
-new Application().app.listen(port, () => {
-    console.log('Express server listening on port ' + port);
-});
+// new Application().app.listen(port, () => {
+//     console.log('Express server listening on port ' + port);
+// });

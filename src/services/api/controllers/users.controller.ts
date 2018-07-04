@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { DataStore } from '../../../storage/data-store';
+import { DataStore } from '../../../lib/storage/data-store';
 
 
 export class UsersController {

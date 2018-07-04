@@ -30,6 +30,6 @@ export class DataStore {
         this.videos.set('3', new Video({ id: '3', title: 'video3', url: '/assets/video3.mp4' }));
         this.videos.set('4', new Video({ id: '4', title: 'video4', url: '/assets/video4.mp4' }));
 
-        this.streams.set('1', new Stream({ id: '1', user: user1, video: video1 }));
+        this.streams.set('1', new Stream({ id: '1', userId: '1', videoId: '1' }));
     }
 }

@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { DataStore } from '../../../storage/data-store';
+import { DataStore } from '../../../lib/storage/data-store';
 import { UsersController } from '../controllers/users.controller';
 import { StreamsController } from '../controllers/streams.controller';
 
