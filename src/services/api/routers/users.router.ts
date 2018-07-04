@@ -6,9 +6,9 @@ import { StreamsController } from '../controllers/streams.controller';
 export class UsersRouter {
 
     dataStore: DataStore;
-    router: Router;
     usersController: UsersController;
     streamsController: StreamsController;
+    router: Router;
 
     constructor(options: { dataStore: DataStore }) {
         this.dataStore = options.dataStore;
