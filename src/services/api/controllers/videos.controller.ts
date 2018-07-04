@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import { DataStore } from '../../../storage/data-store';
 
 
-export class UsersController {
+export class VideosController {
 
     dataStore: DataStore;
 
@@ -12,20 +12,20 @@ export class UsersController {
 
     get(req: Request, res: Response) {
 
-        const user = this.dataStore.users.get(req.params.userId);
+        const video = this.dataStore.videos.get(req.params.videoId);
 
-        if (!user) {
+        if (!video) {
             return res.sendStatus(404);
         }
 
-        res.send(user);
+        res.send(video);
     }
 
     list(req: Request, res: Response) {
 
-        const users = Array.from(this.dataStore.users.values());
+        const videos = Array.from(this.dataStore.videos.values());
 
-        res.send(users);
+        res.send(videos);
     }
 
 }

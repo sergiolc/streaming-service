@@ -2,6 +2,7 @@ import { Router } from 'express';
 import { DataStore } from '../../../storage/data-store';
 import { MainRouter } from './main.router';
 import { UsersRouter } from './users.router';
+import { VideosRouter } from './videos.router';
 
 
 export class AppRouter {
@@ -20,8 +21,7 @@ export class AppRouter {
 
         this.router.use('/', new MainRouter({ dataStore: this.dataStore }).router);
         this.router.use('/users', new UsersRouter({ dataStore: this.dataStore }).router);
-        // this.router.use('/videos', new VideosRouter({ dataStore: this.dataStore }));
-        // this.router.use('/streams', new StreamsRouter({ dataStore: this.dataStore }));
+        this.router.use('/videos', new VideosRouter({ dataStore: this.dataStore }).router);
     }
 
 }
