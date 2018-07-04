@@ -1,7 +1,7 @@
 import { User } from './user.model';
 import { Video } from './video.model';
 
-export class VideoStream {
+export class Stream {
     
     userId: string;
     videoId: string;
