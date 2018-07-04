@@ -19,9 +19,11 @@
   "author": "Sergio Correa",
   "license": "ISC",
   "dependencies": {
+    "@types/socket.io": "^1.4.36",
     "body-parser": "^1.18.3",
     "express": "^4.16.3",
-    "rxjs": "^6.2.1"
+    "rxjs": "^6.2.1",
+    "socket.io": "^2.1.1"
   },
   "devDependencies": {
     "@types/node": "^10.5.1",
