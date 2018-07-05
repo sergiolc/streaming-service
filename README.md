@@ -64,9 +64,9 @@ There are actually 2 services in this project:
 
 ## Online service
 
-Service is hosted on Heroku: `https://slc-streaming-service.herokuapp.com/`.
+Service is hosted on Heroku: https://slc-streaming-service.herokuapp.com/.
 
-Web App for tests hosted on Heroku: `https://slc-streaming-ui.herokuapp.com/`.
+Web App for tests hosted on Heroku: https://slc-streaming-ui.herokuapp.com/.
 
 ## Considerations
 
