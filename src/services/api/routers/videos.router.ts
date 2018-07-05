@@ -26,11 +26,17 @@ export class VideosRouter {
         this.router.route('/')
             .get(this.videosController.list.bind(this));
 
-        this.router.route('/:videoId')
+        this.router.route('/stop/')
+            .get(this.videosController.stopAllStreams.bind(this));
+
+            this.router.route('/:videoId')
             .get(this.videosController.get.bind(this));
 
         this.router.route('/:videoId/request/')
             .get(this.videosController.requestStream.bind(this));
+
+        this.router.route('/:videoId/stop/')
+            .get(this.videosController.stopStream.bind(this));
 
     }
 }

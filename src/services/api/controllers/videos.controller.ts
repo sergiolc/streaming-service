@@ -41,12 +41,33 @@ export class VideosController {
             }
         };
 
+        res.send({ message: 'Streaming request created.', data: streamingRequest });
 
         this.messageQueue.streamingRequests.next(streamingRequest);
 
-
-        res.send({ message: 'Streaming request created.', data: streamingRequest });
     }
 
+    stopStream(req: Request, res: Response) {
+
+        const stream = Array.from(this.dataStore.streams.values())
+            .find(item => item.videoId === req.params.videoId && item.userId === req.query.user);
+
+        if (stream) {
+            this.dataStore.streams.delete(stream.id);
+        }
+
+        res.sendStatus(204);
+    }
+
+    stopAllStreams(req: Request, res: Response) {
+
+        Array.from(this.dataStore.streams.values())
+            .filter(stream => stream.userId === req.query.user)
+            .forEach(stream => {
+                this.dataStore.streams.delete(stream.id);
+            });
+
+        res.sendStatus(204);
+    }
 
 }

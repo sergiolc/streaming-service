@@ -25,6 +25,11 @@ export class UsersController {
 
         const users = Array.from(this.dataStore.users.values());
 
+        if (req.query.name) {
+            const user = users.find(item => item.name === req.query.name);
+            return res.send(user);            
+        }
+
         res.send(users);
     }
 

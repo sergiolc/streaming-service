@@ -27,9 +27,11 @@ export class StreamingRequestProcessor {
         const streams = Array.from(this.dataStore.streams.values())
             .filter(stream => stream.userId === message.data.userId);
 
+        const limit = this.dataStore.users.get(message.data.userId).limit;
+
         const processedMessage = { ...message };
 
-        if (streams.length < 3) {
+        if (streams.length < limit) {
         
             const stream = new Stream({userId: message.data.userId, videoId: message.data.videoId});
             this.dataStore.streams.set(stream.id, stream);
