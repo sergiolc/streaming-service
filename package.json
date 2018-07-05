@@ -1,24 +1,38 @@
 {
-  "name": "streaming-service",
+  "name": "streaming-api",
   "version": "1.0.0",
-  "description": "Streaming service",
-  "main": "index.js",
+  "description": "Streaming api",
+  "main": "dist/services/index.js",
+  "private": true,
+  "engines": {
+    "node": "8.11.2",
+    "npm": "5.6.0"
+  },
   "scripts": {
-    "start": "node app.js",
-    "watch": "nodemon app.js",
-    "test": "mocha test.js"
+    "start": "node dist/services/index.js",
+    "dev": "tsc --watch | nodemon --inspect ./dist/services/index.js --watch dist",
+    "build": "tsc",
+    "watch": "tsc -w",
+    "tslint": "tslint -c tslint.json -p tsconfig.json",
+    "postinstall": "npm run build"
   },
   "author": "Sergio Correa",
   "license": "ISC",
   "dependencies": {
+    "@types/socket.io": "^1.4.36",
     "body-parser": "^1.18.3",
-    "express": "^4.16.3"
+    "express": "^4.16.3",
+    "rxjs": "^6.2.1",
+    "socket.io": "^2.1.1"
   },
   "devDependencies": {
+    "@types/node": "^10.5.1",
     "async": "^2.6.1",
     "chai": "^4.1.2",
     "chai-http": "^4.0.0",
     "mocha": "^5.2.0",
-    "nodemon": "^1.17.5"
+    "nodemon": "^1.17.5",
+    "tslint": "^5.10.0",
+    "typescript": "^2.9.2"
   }
 }
