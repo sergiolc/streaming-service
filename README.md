@@ -16,30 +16,60 @@ Run `npm start` to start server.
 
 Navigate to `http://localhost:8080`.
 
-## Run unit tests
 
-Run `npm test` to execute the unit tests via [Mocha].
+## Project structure
 
-## API endpoints
+This project aims to provide an overview of how a streaming platform could be implemented. It uses mock data storage and mock messaging queue(implemented with RxJS/Observable).
+There are actually 2 services in this project:
+- API
+    
+    Service providing endpoints to retrieve and manipulate data. Client apps connect to this service and request to watch a video. This request is then added to a queue to be processed by the `worker service`. Once the worker has processed the request, the request's status is changed(allowed/denied) and the request is added to another queue which is processed by the `api` and send to the client app using socket.io.
 
-`GET /` main route
+    API endpoints (management of users and videos is not implemented)
 
-`GET /users/:userId/streams` return streaming count and status 
+    `GET /` healthy check endpoint.
 
-ex. response body => { count: 4, status: "NOT_ALLOWED" }
+    USERS:
 
-### For testing
+    `GET /users` return list of users. Can also be filtered using by name (`?name=<name>`).
 
-`PUT /users/:userId/streams` update streaming count (body = `{ count: 5 }`)
+    `GET /users/:userId` return user.
 
-`POST /users/:userId/streams` increment streaming count
+    `GET /users/:userId/streams` return user's live streams.
 
-`DELETE /users/:userId/streams` decrement streaming count
+    VIDEOS:
+
+    `GET /videos` return list of videos.
+
+    `GET /videos/stop?user=<userId>` stop all streams (remove from streams store). 
+    > For tests only. Called when user logs out fom the client app.
+
+    `GET /users/:videoId` return video.
+
+    `GET /videos/:videoId/request?user=userId` request to stream the video.
+
+    `GET /videos/:videoId/stop?user=userId` stop/remove stream from the user's streams list). 
+    > It's called when the user stops watching a video.
+
+
+- WORKER
+
+    Service responsible for processing stream requests, checking the limit allowed for concurrent videos per user.
+
+## Scalability
+- Distributed database, messaging system and caching system.
+- Multiple running instances of API and WORKER services. Using Kubernetes would ease and automate the management of multiple instances/containers based on resources usage / network load. It would help scaling up or down according to the services needs.
+
+![Streaming Service Diagram](streaming-service.jpg?raw=true "Streaming Service Diagram")
 
 ## Online service
 
 Service is hosted on Heroku: `https://slc-streaming-service.herokuapp.com/`.
 
+Web App for tests hosted on Heroku: `https://slc-streaming-ui.herokuapp.com/`.
+
 ## Considerations
 
-For simplicity, the app is implemented with in memory data store. In production the data would be persisted in a distributed database or caching system (memcached/redis) for scalability. That way we could have multiple instances of the service running simultaneously under a load balancer.
+In a production app, the state of the video streaming could be improved and handled by the endpoint responsible for providing the video data instead of when the user selects the video or clicks `Play/Stop`.
+
+Ex. Create a middleware which identifies when the request/stream has started or has been closed/finished. This way, the solution would allow the user to pause video A, watch video B and then resume video A.
