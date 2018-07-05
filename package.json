@@ -14,7 +14,7 @@
     "build": "tsc",
     "watch": "tsc -w",
     "tslint": "tslint -c tslint.json -p tsconfig.json",
-    "test": "mocha test.js"
+    "postinstall": "npm run build"
   },
   "author": "Sergio Correa",
   "license": "ISC",

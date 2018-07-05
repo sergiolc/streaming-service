@@ -52,11 +52,11 @@ export class Application {
             console.log('Socket client connected on port %s.', port);
 
             socket.on('message', (message) => {
-                console.log('Client message: %s', JSON.stringify(message));
+                // console.log('Client message: %s', JSON.stringify(message));
             });
 
             socket.on('disconnect', () => {
-                console.log('Client disconnected');
+                // console.log('Client disconnected');
             });
         });
     }

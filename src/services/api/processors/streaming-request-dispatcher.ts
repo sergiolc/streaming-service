@@ -15,8 +15,6 @@ export class StreamingRequestDispatcher {
     config() {
 
         this.messageQueue.processedStreamingRequests.subscribe(message => {
-            // publish on socket
-            console.log('processed', message);
             this.io.emit('message', message);
         });
 
